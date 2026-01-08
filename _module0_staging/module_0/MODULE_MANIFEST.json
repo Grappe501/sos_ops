@@ -1,0 +1,27 @@
+{
+  "module_id": "module_0_foundation",
+  "module_name": "Foundation Scaffold",
+  "version": "0.1.0",
+  "depends_on": [],
+  "adds": {
+    "routes": ["/", "/login", "/app", "/app/admin"],
+    "db_tables": [],
+    "db_views": [],
+    "jobs": [],
+    "env_vars": ["AUTH_SECRET", "DATABASE_URL", "AUTH_STAFF_EMAIL", "AUTH_STAFF_PASSWORD_BCRYPT", "AUDIT_LOG_PATH"],
+    "feature_flags": []
+  },
+  "manual_steps": [
+    "Copy .env.example to .env.local and set AUTH_SECRET, DATABASE_URL, AUTH_STAFF_EMAIL, AUTH_STAFF_PASSWORD_BCRYPT",
+    "Run pnpm install",
+    "Run pnpm dev",
+    "For Vercel: set env vars in project settings; deploy apps/web"
+  ],
+  "rollback_steps": [
+    "Replace project root with prior module zip/tag (no DB changes in Module 0)."
+  ],
+  "notes": [
+    "Module 0 uses file-based audit logging; DB audit arrives Module 1.",
+    "Auth is env-backed (single staff user) to satisfy early deployment."
+  ]
+}
