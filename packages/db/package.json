@@ -1,1 +1,32 @@
-{ "name": "@sos-ops/db", "version": "0.1.0", "main": "src/index.ts", "type": "module" }
+{
+    "name": "@sos-ops/db",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "main": "src/index.ts",
+    "exports": {
+      ".": "./src/index.ts",
+      "./client": "./src/client.ts",
+      "./schema": "./src/schema/index.ts",
+      "./seed": "./src/seed.ts"
+    },
+    "scripts": {
+      "lint": "node -e \"console.log('db: no lint configured yet')\"",
+      "typecheck": "tsc -p tsconfig.json --noEmit",
+      "db:generate": "drizzle-kit generate --config ./drizzle.config.ts",
+      "db:migrate": "drizzle-kit migrate --config ./drizzle.config.ts",
+      "db:studio": "drizzle-kit studio --config ./drizzle.config.ts",
+      "db:seed": "tsx ./src/seed.ts"
+    },
+    "dependencies": {
+      "drizzle-orm": "0.36.4",
+      "postgres": "3.4.5"
+    },
+    "devDependencies": {
+      "drizzle-kit": "0.27.1",
+      "tsx": "4.19.2",
+      "typescript": "5.5.4",
+      "@types/node": "20.14.12"
+    }
+  }
+  

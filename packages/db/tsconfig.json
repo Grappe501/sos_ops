@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "lib": ["ES2022"],
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+  
+      "strict": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+  
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+  
+      "outDir": "dist",
+      "rootDir": "src",
+  
+      "noEmitOnError": true,
+      "resolveJsonModule": true,
+  
+      "types": ["node"]
+    },
+    "include": ["src/**/*.ts", "drizzle.config.ts"],
+    "exclude": ["dist", "node_modules"]
+  }
+  
