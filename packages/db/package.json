@@ -3,30 +3,52 @@
     "private": true,
     "version": "0.1.0",
     "type": "module",
-    "main": "src/index.ts",
+    "sideEffects": false,
+    "files": ["dist", "drizzle", "drizzle.config.ts", "README.md"],
+  
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+  
     "exports": {
-      ".": "./src/index.ts",
-      "./client": "./src/client.ts",
-      "./schema": "./src/schema/index.ts",
-      "./seed": "./src/seed.ts"
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./client": {
+        "types": "./dist/client.d.ts",
+        "default": "./dist/client.js"
+      },
+      "./schema": {
+        "types": "./dist/schema.d.ts",
+        "default": "./dist/schema.js"
+      },
+      "./seed": {
+        "types": "./dist/seed.d.ts",
+        "default": "./dist/seed.js"
+      }
     },
+  
     "scripts": {
-      "lint": "node -e \"console.log('db: no lint configured yet')\"",
+      "build": "tsc -p tsconfig.json",
       "typecheck": "tsc -p tsconfig.json --noEmit",
+  
       "db:generate": "drizzle-kit generate --config ./drizzle.config.ts",
       "db:migrate": "drizzle-kit migrate --config ./drizzle.config.ts",
       "db:studio": "drizzle-kit studio --config ./drizzle.config.ts",
+  
+      "db:migrate:cli": "tsx ./src/migrate.ts",
       "db:seed": "tsx ./src/seed.ts"
     },
+  
     "dependencies": {
       "drizzle-orm": "0.36.4",
       "postgres": "3.4.5"
     },
     "devDependencies": {
+      "@types/node": "20.14.12",
       "drizzle-kit": "0.27.1",
       "tsx": "4.19.2",
-      "typescript": "5.5.4",
-      "@types/node": "20.14.12"
+      "typescript": "5.5.4"
     }
   }
   
