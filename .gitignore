@@ -1,12 +1,3 @@
+sos_ops_next_module/
+*.zip.part
 node_modules
-.next
-dist
-.env
-.env.*
-!.env.example
-.DS_Store
-var
-
-# Build artifacts
-*.zip
-
