@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "lib": ["ES2022", "DOM", "DOM.Iterable"],
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+  
+      "strict": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitOverride": true,
+      "noUncheckedIndexedAccess": true,
+  
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "noEmitOnError": true,
+  
+      "rootDir": "src",
+      "outDir": "dist",
+  
+      "jsx": "react-jsx",
+      "types": ["node"]
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["dist", "node_modules"]
+  }
+  

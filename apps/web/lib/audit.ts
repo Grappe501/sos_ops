@@ -15,7 +15,8 @@ export type AuditEvent = {
 };
 
 function getLogPath(): string {
-  return process.env.AUDIT_LOG_PATH || "./var/audit.log";
+  // Keep default relative to the app root working directory.
+  return process.env.AUDIT_LOG_PATH ?? "./var/audit.log";
 }
 
 export async function audit(event: AuditEvent): Promise<void> {
@@ -23,17 +24,23 @@ export async function audit(event: AuditEvent): Promise<void> {
   const dir = path.dirname(p);
   await fs.mkdir(dir, { recursive: true });
 
-  const requestId = event.requestId || crypto.randomUUID();
-  const line: AuditEvent = { ...event, at: new Date().toISOString(), requestId };
+  const requestId = event.requestId ?? crypto.randomUUID();
+  const line: AuditEvent = {
+    ...event,
+    at: new Date().toISOString(),
+    requestId
+  };
 
   await fs.appendFile(p, JSON.stringify(line) + "\n", "utf8");
 }
 
 export async function readAuditTail(lines: number): Promise<string[]> {
   const p = getLogPath();
+
   try {
     const content = await fs.readFile(p, "utf8");
-    const arr = content.trim().split(/\r?\n/).filter(Boolean);
+    const arr = content.split(/\r?\n/).filter(Boolean);
+
     return arr.slice(-Math.max(1, lines));
   } catch {
     return [];

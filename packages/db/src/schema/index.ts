@@ -1,25 +1,11 @@
 /**
- * SOS OPS — Database Core
+ * SOS OPS — Database Schema
  *
- * This package owns:
- * - canonical schema definitions
- * - database client construction
- * - migrations + seed orchestration
+ * Barrel export for schema surface only.
+ * This path must never export clients, migrations, or runtime logic.
  *
- * Runtime connections are intentionally thin.
- * Higher-level modules import from this package,
- * but do not create their own DB primitives.
+ * Side-effect free by design.
  */
 
-// Re-export schema surface (tables, enums, views)
-export * from "./schema/index";
-
-// Re-export client factory (lazy, env-bound)
-export * from "./client";
-
-// NOTE:
-// - No side effects at import time
-// - No implicit connections
-// - No module-level singletons
-//
-// Concrete usage begins in Module 1+ consumers.
+// Core tables + enums
+export * from "./core.js";

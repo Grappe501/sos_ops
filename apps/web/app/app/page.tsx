@@ -5,13 +5,14 @@ export const dynamic = "force-dynamic";
 export default async function DashboardHome() {
   async function createSampleAudit() {
     "use server";
+
     await audit({
       action: "sample.write",
       entityType: "system",
       entityId: "module_0",
       after: { hello: "world" },
       before: null,
-      source: "ui",
+      source: "ui"
     });
   }
 
@@ -23,7 +24,7 @@ export default async function DashboardHome() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: 12,
+            gap: 12
           }}
         >
           <div>
@@ -32,7 +33,12 @@ export default async function DashboardHome() {
               You are authenticated. Module 0 provides shell, auth, RBAC rails, and audit logging.
             </p>
           </div>
-          <form action={createSampleAudit}>
+
+          {/* 
+            React DOM types do not yet model Next.js Server Actions.
+            This cast is intentional and localized.
+          */}
+          <form action={createSampleAudit as unknown as string}>
             <button className="btn" type="submit">
               Create sample audit event
             </button>

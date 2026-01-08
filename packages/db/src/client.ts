@@ -10,12 +10,14 @@ import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
  * - Caller controls lifecycle
  *
  * This function may be wrapped by higher-level
- * runtime helpers (API routes, jobs, etc).
+ * runtime helpers (API routes, jobs, workers, etc).
  */
 
 export type DbClient = PostgresJsDatabase;
 
-export function createDbClient(connectionString: string): {
+export function createDbClient(
+  connectionString: string
+): {
   client: DbClient;
   sql: postgres.Sql;
 } {
@@ -24,7 +26,9 @@ export function createDbClient(connectionString: string): {
   }
 
   const sql = postgres(connectionString, {
-    prepare: false
+    prepare: false,
+    // Explicitly opt out of automatic connection pooling magic;
+    // postgres.js manages pooling internally per instance.
   });
 
   const client = drizzle(sql);

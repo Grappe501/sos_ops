@@ -43,7 +43,7 @@ async function main() {
           email: seedEmail,
           displayName: seedName,
           role: "admin",
-          isActive: "true"
+          isActive: true
         })
         .returning({ id: appUser.id });
 
@@ -61,10 +61,7 @@ async function main() {
       actorUserId: userId,
       action: "config.update",
       summary: "Database seed executed",
-      payload: {
-        seedEmail,
-        seedName
-      }
+      payload: { seedEmail, seedName }
     });
 
     // eslint-disable-next-line no-console
